@@ -8,5 +8,9 @@
   "dependencies": {
     "express": "3.1.0",
     "ejs": "*"
+    ,"mocha":"*"
+    ,"should":"*"
+    ,"mongoose":"*"
+    ,"sechash":"*"
   }
 }

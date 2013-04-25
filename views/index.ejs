@@ -1,11 +1,41 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css">
+</head>
+<script type="text/javascript" src="javascripts/zepto.min.js"></script>
+<script type="text/javascript" src="javascripts/bootstrap.min.js"></script>
+<div class="container" style="margin-top:40px;">
+    <div class="hero-unit">
+        <div class="row">
+            <div class="span5" style="border-right:1px solid #ddd;">
+                <h1>A-SAP</h1>
+                <h2>Personal Data</h2>
+            </div>
+            <div class="span3">
+                <form class="form-horizontal" action="/" method="post">
+                    <div class="control-group">
+                        <label class="control-label" >UserId</label>
+                        <div class="controls">
+                            <input type="text" id="userid" name="userid">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="pwd">Password</label>
+                        <div class="controls">
+                            <input type="password" id="pwd" name="pass">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <input type="submit" id="Sign in" class="btn" value="Sign in">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </html>

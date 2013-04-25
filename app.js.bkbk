@@ -1,0 +1,109 @@
+// webサーバの設定
+var PORT = 9000;
+var express  = require('express');
+var app = express();
+
+app.set('view options', { layout : false });
+app.set('view engine',  'ejs');
+
+// MongoDBサーバーの設定
+var mongoose = require('mongoose').Mongoose;
+
+// Collectionのモデル定義
+mongoose.model('User', {
+    properties : [ 'userid', 'password', 'created_at' ],
+    methods    : {
+        save   : function (fn) {
+            this.created_at = new Date();
+            this.__super__(fn);
+        }
+    }
+});
+
+// mydb(database)への接続
+var db = mongoose.connect('mongodb://localhost:27017/mydb');
+
+console.log(db);
+
+// ログイン初期処理
+app.get("/", function (req, res) {
+    res.render('index', {
+        locals : { message : '' }
+    });
+});
+
+// ログインサブミット処理
+app.get("/login", function (req, res) {
+
+    var res_error = function (mes) {
+        res.render('index', {
+            locals : { message : mes }
+        });
+    };
+
+    var res_success = function (mes) {
+        res.render('success', {
+            locals : {
+                "message"  : mes,
+                "userid"   : userid,
+                "password" : password
+            }
+        });
+    };
+
+    var userid     = req.param('userid');
+    var password   = req.param('password');
+    var create_new = req.param('new');
+
+    // useridが未記入時の処理
+    if (! userid) {
+        res_error('not found "User ID"');
+    }
+    // passwordが未記入時の処理
+    if (! password) {
+        res_error('not found "password"');
+    }
+
+    var User  = db.model('User');
+    var user  = new User();
+    var i     = { "userid" : userid, "password" : password };
+
+    // 新規ユーザアカウントの作成
+    if (create_new) {
+
+        User.find(i).one(function (doc) {
+            console.log(doc);
+            // 同一のアカウントがないので、mydbへ書き込みする
+            if (doc == null) {
+                user.userid   = userid;
+                user.password = password;
+                user.save();
+
+                res_success('you get account.');
+
+            }
+            // 同一のアカウントがあるので、やり直し
+            else {
+                res_error('this accout is already gotten');
+            }
+        });
+
+    }
+    // ログインチェック
+    else {
+
+        User.find(i).one(function (doc) {
+            console.log(doc);
+            if (doc == null) {
+                res_error("UserID or passwrod is different.");
+            } else {
+                res_success('login success.');
+            }
+        });
+
+    }
+
+});
+
+
+app.listen(PORT);

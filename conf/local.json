@@ -1,0 +1,17 @@
+{
+  "database" : {
+    "uses" :
+    [
+      {
+        "mongo" :
+        {
+          "adapter" : "mongo",
+          "host" : "localhost",
+          "port" : "",
+          "user" : "",
+          "password" : "",
+          "dbName" : "",
+          "timeout" : 30000
+        }
+      },
+}
