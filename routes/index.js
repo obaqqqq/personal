@@ -5,8 +5,9 @@
 
 exports.index = function(req, res){
     var authFacade = require("../lib/models/facade/auth_facade");
-    !req.body.userid || authFacade.auth(req, res, function(req, res){
+    !req.body.userid || authFacade.auth(req, res, function(err, users){
         console.log("callback!!");
+        console.log(users);
         res.render('success', {title:'Express'});
     });
     res.render('index', { title: 'Express' });
