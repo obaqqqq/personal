@@ -4,14 +4,14 @@
  */
 
 exports.index = function(req, res){
-    var authFacade = require("../lib/models/facade/auth_facade");
-    !req.body.userid || authFacade.auth(req, res, function(err, users){
-        console.log("callback!!");
-        console.log(users);
-        // res.render('success', {title:'Express'});
-        // res.redirect('/');
-        return ;
-    });
+    // var authFacade = require("../lib/models/facade/auth_facade");
+    // !req.body.userid || authFacade.auth(req, res, function(err, users){
+    //     console.log("callback!!");
+    //     // console.log(users);
+    //     // res.render('success', {title:'Express'});
+    //     // res.redirect('/');
+    //     return ;
+    // });
     res.render('index', { title: 'Express' });
 };
 
@@ -22,11 +22,6 @@ exports.check = function(req, res){
         console.log(req);
         res.redirect('/');
     });
-    // console.log(req.sessionID);
-    // console.log(req.session.flg);
-    // console.log("check!");
-    // res.redirect('/');
-    // res.render('success', {title: 'Express'});
 }
 
 exports.success = function(req, res){
