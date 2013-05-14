@@ -8,7 +8,9 @@ exports.index = function(req, res){
     !req.body.userid || authFacade.auth(req, res, function(err, users){
         console.log("callback!!");
         console.log(users);
-        res.render('success', {title:'Express'});
+        // res.render('success', {title:'Express'});
+        // res.redirect('/');
+        return ;
     });
     res.render('index', { title: 'Express' });
 };
@@ -18,18 +20,14 @@ exports.check = function(req, res){
     var authFacade = require("../lib/models/facade/auth_facade");
     authFacade.auth(req, res, function(req){
         console.log(req);
+        res.redirect('/');
     });
-    console.log(req.sessionID);
-    console.log(req.session.flg);
-    console.log("check!");
-    res.redirect('/');
+    // console.log(req.sessionID);
+    // console.log(req.session.flg);
+    // console.log("check!");
+    // res.redirect('/');
     // res.render('success', {title: 'Express'});
 }
-
-
-/*
- * GET success page.
- */
 
 exports.success = function(req, res){
     console.log("success!!");
