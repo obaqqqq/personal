@@ -57,8 +57,11 @@ app.get('/', function(req, res){
 });
 
 app.post('/', function(req, res){
-  console.log("url = " + req.url);
-  routes.success(req, res);
+  if(req.session.flg===true){
+    routes.success(req, res);
+  }else{
+    routes.index(req, res);
+  }
 });
 
 // app.post('/check', routes.check);

@@ -15,20 +15,21 @@ exports.index = function(req, res){
     res.render('index', { title: 'Express' });
 };
 
-
+/*
 exports.check = function(req, res){
     var authFacade = require("../lib/models/facade/auth_facade");
     authFacade.auth(req, res, function(req){
         console.log(req);
         res.redirect('/');
     });
-}
+};
+
 
 exports.success = function(req, res){
     console.log("success!!");
     res.render('success', { title: 'Express' });
 };
-
+*/
 
 
 

@@ -3,6 +3,6 @@
  */
 
 exports.success = function(req, res){
-    console.log("success!!");
+    console.log("routes/success!!");
     res.render('success', { title: 'Express' });
 };

@@ -1,8 +1,25 @@
-var User = require("../lib/models/dao/user.js");
-var sechash = require("sechash");
+console.log(__dirname);
+
+var path = require('path');
+var auth = require(path.resolve(__dirname, '../lib/models/facade/auth_facade'));
 /**
  * login
  */
+
+exports.login = function(req, res, next){
+    auth.login(req, res, function(){
+        next();
+    });
+};
+
+
+
+
+
+
+/*
+var User = require("../lib/models/dao/user.js");
+var sechash = require("sechash");
 module.exports = function(req, res, next){
     var method = req.method.toLowerCase();  // メソッド名取得
     var user = req.body.userid;
@@ -50,7 +67,7 @@ console.log(routes);
     }
     next();
 }
-
+*/
 
 
 
